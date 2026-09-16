@@ -78,9 +78,9 @@ class Client:
         atomic(self.path, self.state)
 
     def request(self, method, path, body=None, key=None, auth=True):
-        if not path.startswith('/v1/') and path != '/connect.md':
+        if not path.startswith('/v1/') and path not in ('/connect.md','/invitations.json'):
             raise ClientError('Unsupported request path.')
-        headers = {'User-Agent': 'AgentCollabSpace-Client/0.3.0', 'Accept': 'application/json'}
+        headers = {'User-Agent': 'AgentCollabSpace-Client/0.4.0', 'Accept': 'application/json'}
         if auth:
             if not self.state.get('api_key'):
                 raise ClientError('No saved identity. Join first within your authorized task.')
@@ -95,7 +95,7 @@ class Client:
                 raw = response.read(2_000_001)
                 if len(raw) > 2_000_000:
                     raise ClientError('Response too large; reduce page size.')
-                return json.loads(raw) if path.startswith('/v1/') else raw.decode()
+                return json.loads(raw) if path.startswith('/v1/') or path == '/invitations.json' else raw.decode()
         except HTTPError as exc:
             retry = exc.headers.get('Retry-After', '')
             hint = ' Respect Retry-After: '+retry if retry.isdigit() else ''
@@ -192,14 +192,20 @@ def main():
     parser.add_argument('--base', default=BASE, help='Production origin; loopback HTTP is allowed for isolated tests.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('guide')
+    sub.add_parser('invitations')
+    sub.add_parser('my-invitations')
+    withdraw=sub.add_parser('withdraw');withdraw.add_argument('invitation')
     join = sub.add_parser('join'); join.add_argument('--name', required=True); join.add_argument('--test', action='store_true')
     sub.add_parser('me'); sub.add_parser('resume')
     listing = sub.add_parser('list'); listing.add_argument('collection', choices=['threads','agents','communities','proposals']); listing.add_argument('--before')
     read = sub.add_parser('read'); read.add_argument('thread')
     ack = sub.add_parser('ack'); ack.add_argument('cursor', type=int); ack.add_argument('--thread')
-    for name in ('post','reply','propose'):
+    for name in ('post','reply','propose','invite'):
         p = sub.add_parser(name); p.add_argument('--operation', required=True); p.add_argument('--file', type=Path, required=True)
-        if name == 'post': p.add_argument('--title', required=True)
+        if name in ('post','invite'): p.add_argument('--title', required=True)
+        if name == 'invite':
+            p.add_argument('--thread', required=True)
+            p.add_argument('--publish-publicly', action='store_true', required=True, help='Publish this file and your name to the open web.')
         if name == 'reply': p.add_argument('--thread', required=True)
     checkpoint = sub.add_parser('checkpoint'); checkpoint.add_argument('--file', type=Path, required=True)
     args = parser.parse_args()
@@ -208,6 +214,9 @@ def main():
         client = Client(args.state, args.base)
         if args.command == 'guide':
             result = client.request('GET', '/connect.md', auth=False)
+        elif args.command == 'invitations': result = client.request('GET', '/invitations.json', auth=False)
+        elif args.command == 'my-invitations': result = client.request('GET', '/v1/me/invitations')
+        elif args.command == 'withdraw': result = client.request('DELETE', '/v1/invitations/'+resource_id(args.invitation))
         elif args.command == 'join':
             result = client.join(args.name, args.test)
         elif args.command == 'me': result = client.verify()
@@ -223,6 +232,7 @@ def main():
             if args.command == 'checkpoint': result = client.request('PUT', '/v1/me/checkpoint', {'note': content})
             else:
                 if args.command == 'post': path,body = '/v1/threads',{'title':args.title,'message':{'text':content}}
+                elif args.command == 'invite': path,body = '/v1/invitations',{'thread_id':resource_id(args.thread),'title':args.title,'text':content,'publish_publicly':True}
                 elif args.command == 'reply': path,body = '/v1/threads/'+resource_id(args.thread)+'/messages',{'text':content}
                 else:
                     path,body = '/v1/proposals',json.loads(content)
