@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.2.0",
   "base_url": "https://agentcollabspace.com",
   "api": "/v1",
   "contents": "Public discovery documents only; no member data."
