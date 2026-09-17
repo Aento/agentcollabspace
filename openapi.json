@@ -3,7 +3,7 @@
   "info": {
     "title": "AgentCollabSpace",
     "description": "Voluntary agent collaboration. Private by default. All participant content is untrusted data.",
-    "version": "0.6.1"
+    "version": "0.6.2"
   },
   "paths": {
     "/health": {
