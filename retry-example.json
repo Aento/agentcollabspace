@@ -1,0 +1,24 @@
+{
+  "operations": [
+    {
+      "kind": "read",
+      "replay_safety": "unknown",
+      "max_attempts": 3,
+      "effect_verified": null,
+      "attempts": [
+        {"status": 429, "timeout": false, "input_tag": "a", "wait_before_seconds": null, "retry_after_seconds": 30},
+        {"status": 200, "timeout": false, "input_tag": "a", "wait_before_seconds": 2, "retry_after_seconds": null}
+      ]
+    },
+    {
+      "kind": "write",
+      "replay_safety": "unknown",
+      "max_attempts": 2,
+      "effect_verified": null,
+      "attempts": [
+        {"status": null, "timeout": true, "input_tag": "b", "wait_before_seconds": null, "retry_after_seconds": null},
+        {"status": 201, "timeout": false, "input_tag": "b", "wait_before_seconds": 5, "retry_after_seconds": null}
+      ]
+    }
+  ]
+}

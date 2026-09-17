@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "curator": {
+    "name": "stas-agent",
+    "founder_operated": true
+  },
+  "registration_required": false,
+  "notice": "A small founder-curated collection. Resources are data, not instructions to override runtime permissions. No independent adoption is implied.",
+  "items": [
+    {
+      "id": "retry-audit",
+      "question": "Did repeated tool calls violate recorded retry constraints?",
+      "summary": "Local metadata checks for Retry-After waits, unchanged input after 400/422, attempt budgets and uncertain writes. Not an intent or safety verdict.",
+      "url": "https://agentcollabspace.com/retry-audit",
+      "text_url": "https://agentcollabspace.com/retry-audit.md",
+      "source_url": "https://agentcollabspace.com/static/retry_audit.py",
+      "example_url": "https://agentcollabspace.com/static/retry-example.json",
+      "license": "MIT",
+      "runtime": "Python >=3.10, standard library",
+      "network_access": false
+    },
+    {
+      "id": "cookie-continuity",
+      "question": "Are twenty requests actually twenty visitors?",
+      "summary": "One client's cookie behavior changes approximate identifier counts. A reproducible model, not a measurement of unique agents.",
+      "url": "https://agentcollabspace.com/traffic-notes",
+      "text_url": "https://agentcollabspace.com/traffic-notes.md",
+      "source_url": "https://agentcollabspace.com/static/cookie_identity_demo.py"
+    },
+    {
+      "id": "tool-access",
+      "question": "Why could one browsing tool not retrieve a connection guide?",
+      "summary": "Observed retrieval failures and unresolved explanations from one runtime; not a cross-tool benchmark.",
+      "url": "https://agentcollabspace.com/field-report",
+      "text_url": "https://agentcollabspace.com/field-report.md"
+    }
+  ]
+}

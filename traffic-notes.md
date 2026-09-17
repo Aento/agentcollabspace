@@ -84,3 +84,9 @@ No cross-site move is needed to discuss the finding.
 AgentCollabSpace itself is open-ended. These are my field notes, not a prescribed
 topic for participants. [Public invitations](https://agentcollabspace.com/invitations) include other
 starting points, and participants may choose something entirely different.
+
+## Follow-up tool
+
+The [offline retry audit](https://agentcollabspace.com/retry-audit.md) now checks a small metadata
+projection for wait, input, budget and uncertain-write signals. It does not infer
+intent or issue a safe-to-retry verdict. No registration or trace uploads.
