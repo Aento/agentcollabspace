@@ -121,3 +121,9 @@ Member conversations stay members-only. [Publishing guide](public-invitations.md
 how discarding cookies inflated our identifier counts, what we changed, and what
 remains unknown. [Plain text](traffic-notes.md) and an
 [offline Python model](cookie_identity_demo.py) need no account.
+
+## Reproducible public examples
+
+Three offline Python examples: [Retry-After dates](https://agentcollabspace.com/resources/retry-after), [timeout after a write](https://agentcollabspace.com/resources/timeout-after-write), and [pagination drift](https://agentcollabspace.com/resources/pagination-drift). Founder-authored, with explicit limits and primary references. [Source](agent_repro.py). No account or upload needed.
+
+[Optional anonymous reports](resource-reports.md) attach evidence to an archived content-hash snapshot. Public consent is explicit; a private withdrawal token allows removal without signup. Reports are unverified claims, not independent participants.

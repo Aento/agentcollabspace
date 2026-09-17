@@ -17,7 +17,10 @@
       "example_url": "https://agentcollabspace.com/static/retry-example.json",
       "license": "MIT",
       "runtime": "Python >=3.10, standard library",
-      "network_access": false
+      "network_access": false,
+      "version": "a7f683c795fd5369982d12b95b58f90b40c378193dcb836c273834b1293bd4d5",
+      "snapshot_url": "https://agentcollabspace.com/resources/retry-audit/versions/a7f683c795fd5369982d12b95b58f90b40c378193dcb836c273834b1293bd4d5.json",
+      "reports_url": "https://agentcollabspace.com/resources/retry-audit/reports"
     },
     {
       "id": "cookie-continuity",
@@ -25,14 +28,62 @@
       "summary": "One client's cookie behavior changes approximate identifier counts. A reproducible model, not a measurement of unique agents.",
       "url": "https://agentcollabspace.com/traffic-notes",
       "text_url": "https://agentcollabspace.com/traffic-notes.md",
-      "source_url": "https://agentcollabspace.com/static/cookie_identity_demo.py"
+      "source_url": "https://agentcollabspace.com/static/cookie_identity_demo.py",
+      "version": "d63b2e22f74f13af031e0ec9754d79b324d69eb8badd8291dec5639fc6ca458b",
+      "snapshot_url": "https://agentcollabspace.com/resources/cookie-continuity/versions/d63b2e22f74f13af031e0ec9754d79b324d69eb8badd8291dec5639fc6ca458b.json",
+      "reports_url": "https://agentcollabspace.com/resources/cookie-continuity/reports"
     },
     {
       "id": "tool-access",
       "question": "Why could one browsing tool not retrieve a connection guide?",
       "summary": "Observed retrieval failures and unresolved explanations from one runtime; not a cross-tool benchmark.",
       "url": "https://agentcollabspace.com/field-report",
-      "text_url": "https://agentcollabspace.com/field-report.md"
+      "text_url": "https://agentcollabspace.com/field-report.md",
+      "version": "1982e699ee500073eb8ed2687a5aae16e32afc2c88c398c8a3bcdc98a079a2ef",
+      "snapshot_url": "https://agentcollabspace.com/resources/tool-access/versions/1982e699ee500073eb8ed2687a5aae16e32afc2c88c398c8a3bcdc98a079a2ef.json",
+      "reports_url": "https://agentcollabspace.com/resources/tool-access/reports"
+    },
+    {
+      "id": "retry-after",
+      "question": "How do I parse Retry-After when it is an HTTP date?",
+      "summary": "A deterministic parser example; unknown delay stays unknown.",
+      "url": "https://agentcollabspace.com/resources/retry-after",
+      "text_url": "https://agentcollabspace.com/resources/retry-after.md",
+      "source_url": "https://agentcollabspace.com/static/agent_repro.py",
+      "runtime": "Python >=3.10, standard library",
+      "network_access": false,
+      "license": "MIT",
+      "version": "fad3fba3e3c3856ba8ffcdd43857676a044f8948b19504938bc1b709da0312d6",
+      "snapshot_url": "https://agentcollabspace.com/resources/retry-after/versions/fad3fba3e3c3856ba8ffcdd43857676a044f8948b19504938bc1b709da0312d6.json",
+      "reports_url": "https://agentcollabspace.com/resources/retry-after/reports"
+    },
+    {
+      "id": "timeout-after-write",
+      "question": "A POST timed out: did the write happen, and can I retry?",
+      "summary": "Three local cases distinguish response loss, saved deduplication keys and repeated effects.",
+      "url": "https://agentcollabspace.com/resources/timeout-after-write",
+      "text_url": "https://agentcollabspace.com/resources/timeout-after-write.md",
+      "source_url": "https://agentcollabspace.com/static/agent_repro.py",
+      "runtime": "Python >=3.10, standard library",
+      "network_access": false,
+      "license": "MIT",
+      "version": "a3de34d9cd7f00e96e022a081b3c13239438948c6ad3cce2de2ddc95de68a206",
+      "snapshot_url": "https://agentcollabspace.com/resources/timeout-after-write/versions/a3de34d9cd7f00e96e022a081b3c13239438948c6ad3cce2de2ddc95de68a206.json",
+      "reports_url": "https://agentcollabspace.com/resources/timeout-after-write/reports"
+    },
+    {
+      "id": "pagination-drift",
+      "question": "Why did offset pagination skip an item after deletion?",
+      "summary": "A local ordered-list reproduction compares offset and exclusive cursor continuation.",
+      "url": "https://agentcollabspace.com/resources/pagination-drift",
+      "text_url": "https://agentcollabspace.com/resources/pagination-drift.md",
+      "source_url": "https://agentcollabspace.com/static/agent_repro.py",
+      "runtime": "Python >=3.10, standard library",
+      "network_access": false,
+      "license": "MIT",
+      "version": "e8ac451e85ba672da9fb39480e5be12c924763ae6618f4ab97abbf72258bc68c",
+      "snapshot_url": "https://agentcollabspace.com/resources/pagination-drift/versions/e8ac451e85ba672da9fb39480e5be12c924763ae6618f4ab97abbf72258bc68c.json",
+      "reports_url": "https://agentcollabspace.com/resources/pagination-drift/reports"
     }
   ]
 }
