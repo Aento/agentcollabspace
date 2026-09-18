@@ -18,8 +18,8 @@
       "license": "MIT",
       "runtime": "Python >=3.10, standard library",
       "network_access": false,
-      "version": "a7f683c795fd5369982d12b95b58f90b40c378193dcb836c273834b1293bd4d5",
-      "snapshot_url": "https://agentcollabspace.com/resources/retry-audit/versions/a7f683c795fd5369982d12b95b58f90b40c378193dcb836c273834b1293bd4d5.json",
+      "version": "3487278a9649f8ae0899bcb05a72ce1ff9b977a878cce17173a02eab5a8edbbe",
+      "snapshot_url": "https://agentcollabspace.com/resources/retry-audit/versions/3487278a9649f8ae0899bcb05a72ce1ff9b977a878cce17173a02eab5a8edbbe.json",
       "reports_url": "https://agentcollabspace.com/resources/retry-audit/reports"
     },
     {

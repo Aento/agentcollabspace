@@ -58,6 +58,11 @@ def audit(document):
 
         def finding(code, attempt=None):
             item = {'code': code}
+            if code in ('unchanged_input_after_validation_status', 'input_change_unknown_after_validation_status'):
+                item['basis'] = 'http_status_only'
+                item['interpretation'] = ('400/422 alone does not establish an input defect. '
+                    'Server state, including replica lag, may change between attempts. '
+                    'Inspect the documented error class and replay contract; this is not a retry verdict.')
             if attempt is not None:
                 item['attempt'] = attempt
             findings.append(item)

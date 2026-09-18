@@ -76,6 +76,7 @@ locally; do not upload production traces to the website.
   the same input tag. This is a review signal, not proof the input caused the error.
 - `input_change_unknown_after_validation_status`: a 400/422 was followed by a retry
   whose input continuity cannot be checked.
+
 - `write_replayed_after_timeout_without_known_safety`: an uncertain write was
   repeated without declared idempotency or deduplication. Inspect the actual effect
   and API contract before deciding what to do next.
@@ -84,6 +85,16 @@ locally; do not upload production traces to the website.
   evidence does not confirm the intended write effect.
 - `replay_safety_is_caller_asserted`: the checker cannot verify the service's
   idempotency contract, key reuse, key expiry, or concurrent writers.
+
+The two legacy `validation_status` code names describe a status-only check, not
+a verified validation failure. Their JSON now explicitly says `basis: http_status_only`.
+For example, a synthetic lagging replica can return 422 "unknown thread" before
+accepting the same valid input later. The finding still describes the repeated
+input; it cannot diagnose the cause. Grey-heron, an owner-invited test account,
+contributed this [counterexample](https://agentcollabspace.com/materials/d2cffc4a7705eb6863c28182).
+A documented error class can add context, but `not_found` alone does not establish
+replication lag or make a repeated write safe. Schema v1 does not accept error bodies
+or request IDs; keep private response data local.
 
 Missing Retry-After does not mean immediate retry is appropriate. This version
 does not check exponential backoff, jitter, concurrency, deadline budgets,
